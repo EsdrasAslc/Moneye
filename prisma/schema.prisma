@@ -1,0 +1,83 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {,
+  provider = "prisma-client-js"
+  previewFeatures = ["typedSql"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id_user Int @id @default(autoincrement())
+  email_user String @unique @db.VarChar(40) 
+  pass String @db.VarChar(40)
+  saldo Decimal @db.Decimal(19,2) @default(0)
+
+  receita Receita[]
+  despesa Despesa[]
+  user_info User_Info[]
+  metas Metas[]
+}
+
+model User_Info {
+  id_user_info Int @id @default(autoincrement())
+  id_user Int @db.Int @unique
+  nm_user String @db.VarChar(40)
+  prof_user String @db.VarChar(40)
+  gnr_user Int @db.Int
+  idade_user Int @db.Int
+
+  user User @relation(fields: [id_user], references: [id_user])
+}
+
+model Receita {
+  id_receita Int @id @default(autoincrement())
+  id_user Int @db.Int
+  id_cat_rec Int @db.Int
+  valor_receita Decimal @db.Decimal(19,2) 
+  data_receita DateTime @db.Date()
+
+  user User @relation(fields: [id_user], references: [id_user])
+  cat_rec Cat_Rec @relation(fields: [id_cat_rec], references: [id_cat_rec])
+}
+
+model Cat_Rec {
+  id_cat_rec Int @id @default(autoincrement())
+  nm_cat_rec String @unique @db.VarChar(20)
+
+  receita Receita[]
+}
+
+model Despesa {
+  id_despesa Int @id @default(autoincrement())
+  id_user Int @db.Int
+  id_cat_desp Int @db.Int
+  valor_despesa Decimal @db.Decimal(19,2) 
+  data_despesa DateTime @db.Date()
+
+  user User @relation(fields: [id_user], references: [id_user])
+  cat_desp Cat_Desp @relation(fields: [id_cat_desp], references: [id_cat_desp])
+}
+
+model Cat_Desp {
+  id_cat_desp Int @id @default(autoincrement())
+  nm_cat_desp String @unique @db.VarChar(20)
+
+  despesa Despesa[]
+}
+
+model Metas {
+  id_meta Int @id @default(autoincrement())
+  id_user Int @db.Int
+  nm_meta String @db.VarChar(40)
+  valor_meta Decimal @db.Decimal(19,2)
+
+  user User @relation(fields: [id_user], references: [id_user])
+}
