@@ -5,17 +5,21 @@ export default class RegisterRepository {
 
     async registerUser(email, senha) {
         try {
-            const user = await prisma.$queryRaw`INSERT INTO user(email_user, pass) VALUES (${email}, ${senha})`;
+            const user = await prisma.user.create({
+                data: {
+                    email_user: email,
+                    pass: senha,
+                },
+            });
 
-            prisma.$disconnect()
-            return { success: true, message: "Usuário registrado com sucesso." };v   
+            return { success: true, message: "Usuário registrado com sucesso.", id: user.id_user };
         } catch (error) {
             if (error.code === 'P2002') {
-                prisma.$disconnect()
-                return { success: false, message: "Este e-mail já está em uso." };
+                return { success: false, message: "Este e-mail já está em uso.", description: error.message };
             }
-            prisma.$disconnect()
-            return { success: false, message: "Erro ao registrar usuário." };
+            return { success: false, message: "Erro ao registrar usuário.", description: error.message };
+        } finally {
+            await prisma.$disconnect();
         }
     }
 
@@ -34,4 +38,3 @@ export default class RegisterRepository {
         }
     }
 }
-  
