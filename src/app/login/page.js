@@ -3,6 +3,7 @@
 import "@/app/login/login-style.css";
 import { useState } from "react";
 import Image from 'next/image';
+import LoginImage from '@/app/login/images/login.svg';
 
 
 export default function Login() {
@@ -38,7 +39,7 @@ export default function Login() {
             <div className="container-login">
                 <div className="img-box">
                     <Image
-                        src= "" // Caminho da imagem dentro da pasta public
+                        src={LoginImage} // Caminho da imagem dentro da pasta public
                         alt="Descrição da imagem"
                         width={500} // Largura da imagem
                         height={300} // Altura da imagem
@@ -72,7 +73,7 @@ export default function Login() {
                         </div>
 
                         <div className="input-box">
-                            <p>Não tem uma Conta? <a href="#">Inscrever-se</a>   </p>
+                            <p>Não tem uma Conta? <a href="/register">Inscrever-se</a>   </p>
                         </div>
                     </form>
 
