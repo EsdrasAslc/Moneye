@@ -2,6 +2,8 @@
 
 import "@/app/login/login-style.css";
 import { useState } from "react";
+import Image from 'next/image';
+
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -33,7 +35,58 @@ export default function Login() {
 
     return (
         <main>
-            <section>
+            <div className="container-login">
+                <div className="img-box">
+                    <Image
+                        src= "" // Caminho da imagem dentro da pasta public
+                        alt="Descrição da imagem"
+                        width={500} // Largura da imagem
+                        height={300} // Altura da imagem
+                    />
+                </div>
+            </div>
+            <div className="content-box">
+                <div className="form-box">
+                    <h2>Entrar</h2>
+                    <form>
+
+                        <div className="input-box">
+                            <span>Usuário</span>
+                            <input type="email" placeholder="@mail.com" />
+                        </div>
+
+                        <div className="input-box">
+                            <span>Senha</span>
+                            <input type="password" placeholder="password" />
+                        </div>
+
+                        <div className="remember">
+                            <label>
+                                <input type="checkbox" /> Remember me
+                            </label>
+                            <a href="#">Esqueceu a Senha?</a>
+                        </div>
+
+                        <div className="input-box">
+                            <input type="submit" value="Entrar" />
+                        </div>
+
+                        <div className="input-box">
+                            <p>Não tem uma Conta? <a href="#">Inscrever-se</a>   </p>
+                        </div>
+                    </form>
+
+                    <h3>Logar Com</h3>
+                    <ul className="ul">
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            {/* <section> 
                 <div>
                     <label htmlFor="login">Digite seu email</label>
                     <input 
@@ -55,7 +108,7 @@ export default function Login() {
                 <p>Caso não possua conta clique aqui!</p>
                 <button onClick={login}>Login</button>
                 {mensagem && <p>{mensagem}</p>}
-            </section>
+            </section> */}
         </main>
     );
 }
