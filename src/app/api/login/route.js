@@ -15,7 +15,7 @@ export async function POST(request) {
         headers: { "Content-Type": "application/json" }
       });
     } else {
-      return new Response(JSON.stringify({ message: "Email ou senha inválidos" }), {
+      return new Response(JSON.stringify({ message: "Email ou senha inválidos"}), {
         status: 401,
         headers: { "Content-Type": "application/json" }
       });

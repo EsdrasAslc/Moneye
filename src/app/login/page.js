@@ -4,12 +4,15 @@ import "@/app/login/login-style.css";
 import { useState } from "react";
 import Image from 'next/image';
 import LoginImage from '@/app/login/images/login.svg';
+import { useSensitiveData } from '@/app/context/SensitiveDataContext';
+import { useRouter } from 'next/navigation';
 
 
 export default function Login() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [mensagem, setMensagem] = useState('');
+    const { setSensitiveData } = useSensitiveData();
+    const router = useRouter();
 
     async function login() {
         try {
@@ -23,16 +26,22 @@ export default function Login() {
 
             if (response.ok) {
                 const data = await response.json();
-                setMensagem(`Login bem-sucedido! ID do usuário: ${data.id}`);
+                alert(`OK ${data.id}`);
+                handleSetData(data.id);
             } else {
                 const error = await response.json();
-                setMensagem(`Erro: ${error.message}`);
+                alert(`Erro: ${error.message}`);
             }
         } catch (err) {
             console.error('Erro ao tentar logar:', err);
-            setMensagem('Erro no servidor, tente novamente mais tarde.');
+            alert('Erro no servidor, tente novamente mais tarde.');
         }
     }
+
+    const handleSetData = (id) => {
+        setSensitiveData(id);
+        router.replace('/controle');
+    };
 
     return (
         <main>
@@ -53,12 +62,22 @@ export default function Login() {
 
                         <div className="input-box">
                             <span>Usuário</span>
-                            <input type="email" placeholder="@mail.com" />
+                            <input 
+                            type="email" 
+                            placeholder="@mail.com" 
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)} 
+                        />
                         </div>
 
                         <div className="input-box">
                             <span>Senha</span>
-                            <input type="password" placeholder="password" />
+                            <input 
+                                type="password" 
+                                placeholder="password"
+                                value={senha} 
+                                onChange={(e) => setSenha(e.target.value)} 
+                            />
                         </div>
 
                         <div className="remember">
@@ -69,7 +88,8 @@ export default function Login() {
                         </div>
 
                         <div className="input-box">
-                            <input type="submit" value="Entrar" />
+                            {/* <input type="submit" value="Entrar" /> */}
+                            <button onClick={login}>Login</button>
                         </div>
 
                         <div className="input-box">
