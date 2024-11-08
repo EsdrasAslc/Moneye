@@ -44,8 +44,8 @@ export default function Login() {
     };
 
     return (
-        <main>
-            <div className="container-login">
+        <main className="container-login">
+            <div >
                 <div className="img-box">
                     <Image
                         src={LoginImage} // Caminho da imagem dentro da pasta public
@@ -96,11 +96,6 @@ export default function Login() {
                             <p>Não tem uma Conta? <a href="/register">Inscrever-se</a>   </p>
                         </div>
                     </form>
-
-                    <h3>Logar Com</h3>
-                    <ul className="ul">
-
-                    </ul>
 
                 </div>
 

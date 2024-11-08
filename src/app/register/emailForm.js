@@ -35,11 +35,11 @@ export default function EmailForm({ nextStep }) {
 
     try {
       const response = await fetch('http://localhost:3000/api/register/user', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ email: email1, senha: senha1 })
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: email1, senha: senha1 })
       });
 
       if (response.ok) {
@@ -51,24 +51,106 @@ export default function EmailForm({ nextStep }) {
           alert("Registro Falhou! E-mail já em uso!");
         }
       } else {
-          const error = await response.json();
-          alert(`Erro: ${error.message}`);
+        const error = await response.json();
+        alert(`Erro: ${error.message}`);
       }
     } catch (err) {
       console.error('Erro ao tentar registrar:', err);
       alert('Erro no servidor, tente novamente mais tarde.');
     }
-    nextStep(id); 
+    nextStep(id);
   }
 
   return (
-    <div>
-      <h2>Registro - Email e Senha</h2>
-      <input type="email" placeholder="Digite seu email" value={email1} onChange={(e) => setEmail1(e.target.value)} />
-      <input type="email" placeholder="Repita seu email" value={email2} onChange={(e) => setEmail2(e.target.value)} />
-      <input type="password" placeholder="Digite sua senha" value={senha1} onChange={(e) => setSenha1(e.target.value)} />
-      <input type="password" placeholder="Repita sua senha" value={senha2} onChange={(e) => setSenha2(e.target.value)} />
-      <button onClick={handleSubmit}>Próximo</button>
-    </div>
+    <main className="container-login">
+
+      <div className="content-box">
+        <h2>Registre-se</h2>
+        <div className="form-box">
+          <div>
+            <div className="input-box">
+              <span>Digite seu email</span>
+              <input
+                type="email"
+                placeholder="@mail.com"
+                value={email1}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="input-box">
+              <span>Repita seu email</span>
+              <input
+                type="email"
+                placeholder="@mail.com"
+                value={email2}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+          </div>
+          <div>
+            <div className="input-box">
+              <span>Senha</span>
+              <input
+                type="password"
+                placeholder="password"
+                value={senha1}
+                onChange={(e) => setSenha(e.target.value)}
+              />
+            </div>
+            <div className="input-box">
+              <span>Repita sua senha</span>
+              <input
+                type="password"
+                placeholder="password"
+                value={senha2}
+                onChange={(e) => setSenha(e.target.value)}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="input-box">
+          {/* <input type="submit" value="Entrar" /> */}
+          <button onClick={handleSubmit}>Próximo</button>
+        </div>
+      </div>
+
+
+
+
+      {/* <section> 
+                <div>
+                    <label htmlFor="login">Digite seu email</label>
+                    <input 
+                        type="email" 
+                        id="login" 
+                        value={email} 
+                        onChange={(e) => setEmail(e.target.value)} 
+                    />
+                </div>
+                <div>
+                    <label htmlFor="password">Digite a sua senha</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        value={senha} 
+                        onChange={(e) => setSenha(e.target.value)} 
+                    />
+                </div>
+                <p>Caso não possua conta clique aqui!</p>
+                <button onClick={login}>Login</button>
+                {mensagem && <p>{mensagem}</p>}
+            </section> */}
+    </main>
   );
 }
+
+
+// <div>
+//   <input type="email" placeholder="Digite seu email" value={email1} onChange={(e) => setEmail1(e.target.value)} />
+//   <input type="email" placeholder="Repita seu email" value={email2} onChange={(e) => setEmail2(e.target.value)} />
+//   <input type="password" placeholder="Digite sua senha" value={senha1} onChange={(e) => setSenha1(e.target.value)} />
+//   <input type="password" placeholder="Repita sua senha" value={senha2} onChange={(e) => setSenha2(e.target.value)} />
+//   <button onClick={handleSubmit}>Próximo</button>
+// </div>
+
+
