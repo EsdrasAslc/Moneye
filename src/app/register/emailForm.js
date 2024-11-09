@@ -63,7 +63,6 @@ export default function EmailForm({ nextStep }) {
 
   return (
     <main className="container-login">
-
       <div className="content-box">
         <h2>Registre-se</h2>
         <div className="form-box">
@@ -74,7 +73,7 @@ export default function EmailForm({ nextStep }) {
                 type="email"
                 placeholder="@mail.com"
                 value={email1}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmail1(e.target.value)}
               />
             </div>
             <div className="input-box">
@@ -83,18 +82,18 @@ export default function EmailForm({ nextStep }) {
                 type="email"
                 placeholder="@mail.com"
                 value={email2}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmail2(e.target.value)}
               />
             </div>
           </div>
           <div>
             <div className="input-box">
-              <span>Senha</span>
+              <span>Digite sua senha</span>
               <input
                 type="password"
                 placeholder="password"
                 value={senha1}
-                onChange={(e) => setSenha(e.target.value)}
+                onChange={(e) => setSenha1(e.target.value)}
               />
             </div>
             <div className="input-box">
@@ -103,43 +102,15 @@ export default function EmailForm({ nextStep }) {
                 type="password"
                 placeholder="password"
                 value={senha2}
-                onChange={(e) => setSenha(e.target.value)}
+                onChange={(e) => setSenha2(e.target.value)}
               />
             </div>
           </div>
         </div>
         <div className="input-box">
-          {/* <input type="submit" value="Entrar" /> */}
           <button onClick={handleSubmit}>Próximo</button>
         </div>
       </div>
-
-
-
-
-      {/* <section> 
-                <div>
-                    <label htmlFor="login">Digite seu email</label>
-                    <input 
-                        type="email" 
-                        id="login" 
-                        value={email} 
-                        onChange={(e) => setEmail(e.target.value)} 
-                    />
-                </div>
-                <div>
-                    <label htmlFor="password">Digite a sua senha</label>
-                    <input 
-                        type="password" 
-                        id="password" 
-                        value={senha} 
-                        onChange={(e) => setSenha(e.target.value)} 
-                    />
-                </div>
-                <p>Caso não possua conta clique aqui!</p>
-                <button onClick={login}>Login</button>
-                {mensagem && <p>{mensagem}</p>}
-            </section> */}
     </main>
   );
 }

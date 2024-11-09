@@ -10,15 +10,17 @@ export async function POST(request) {
     const result = await loginRepository.login(email, senha);
 
     if (result) {
-      return new Response(JSON.stringify(result), {
-        status: 200,
-        headers: { "Content-Type": "application/json" }
-      });
-    } else {
-      return new Response(JSON.stringify({ message: "Email ou senha inválidos"}), {
-        status: 401,
-        headers: { "Content-Type": "application/json" }
-      });
+      if (result.success) {
+        return new Response(JSON.stringify(result), {
+          status: 200,
+          headers: { "Content-Type": "application/json" }
+        });
+      } else {
+        return new Response(JSON.stringify({ message: "Email ou senha inválidos" }), {
+          status: 401,
+          headers: { "Content-Type": "application/json" }
+        });
+      }
     }
   } catch (error) {
     console.error(error);

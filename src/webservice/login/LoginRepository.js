@@ -7,15 +7,20 @@ export default class LoginRepository {
     const user = await prisma.$queryRaw`SELECT * FROM User WHERE email_user = ${email}`;
     prisma.$disconnect()
     if (!user || user.length === 0) {
-      return false;
+      return {
+        success: false
+      };
     }
 
     if (user[0].pass === senha) {
       return {
-        id: user[0].id_user,
+        success: true,
+        id: user[0].id_user
       };
     } else {
-      return false;
+      return {
+        success: false
+      };
     }
   }
 }

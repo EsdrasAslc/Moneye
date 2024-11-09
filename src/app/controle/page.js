@@ -1,5 +1,5 @@
 "use client";
-
+import "@/app/controle/controle-style.css"
 import { useSensitiveData } from '@/app/context/SensitiveDataContext';
 
 export default function Controle() {

@@ -58,7 +58,6 @@ export default function Login() {
             <div className="content-box">
                 <div className="form-box">
                     <h2>Entrar</h2>
-                    <form>
 
                         <div className="input-box">
                             <span>Usuário</span>
@@ -80,22 +79,14 @@ export default function Login() {
                             />
                         </div>
 
-                        <div className="remember">
-                            <label>
-                                <input type="checkbox" /> Remember me
-                            </label>
-                            <a href="#">Esqueceu a Senha?</a>
-                        </div>
-
                         <div className="input-box">
                             {/* <input type="submit" value="Entrar" /> */}
-                            <button onClick={login}>Login</button>
+                            <button className="btn" onClick={login}>Login</button>
                         </div>
 
                         <div className="input-box">
                             <p>Não tem uma Conta? <a href="/register">Inscrever-se</a>   </p>
                         </div>
-                    </form>
 
                 </div>
 
