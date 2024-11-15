@@ -2,6 +2,7 @@
 import "@/app/controle/controle-style.css"
 import { useSensitiveData } from '@/app/context/SensitiveDataContext';
 import Saldo from "@/app/controle/components/saldo";
+import Receita from "@/app/controle/components/receita"
 
 export default function Controle() {
   // const { sensitiveData } = useSensitiveData(); // Acessa o dado sensível
@@ -10,6 +11,7 @@ export default function Controle() {
   return (
     <main>
       <Saldo></Saldo>
+      <Receita></Receita>
       <div>Dados Sensíveis: {sensitiveData}</div>
     </main>);
 }
