@@ -8,6 +8,7 @@ export default function Saldo() {
     const sensitiveData = 1;
     const id_user = sensitiveData
     const [saldo, setSaldo] = useState("");
+    const [visivel, setVisivel] = useState(true);
 
     async function buscarSaldo() {
         try {
@@ -39,7 +40,12 @@ export default function Saldo() {
 
     return (
         <main>
-            <div>Saldo: {saldo || "carregando..."}</div>
+            <div className="saldoContainer">
+                <p>Saldo: {visivel ? (saldo || "carregando...") : "******"}</p>
+                <button id="ocultarSaldo" onClick={() => setVisivel(!visivel)}>
+                    {visivel ? "🐵" : "🙈"}
+                </button>
+            </div>
         </main>
     );
 }

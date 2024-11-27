@@ -1,3 +1,58 @@
 * {
     color: black;
 }
+
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+}
+    
+
+.div2 {
+    grid-column: span 2 / span 2;
+    grid-column-start: 3;
+}
+
+.div3 {
+    grid-row-start: 2;
+}
+
+.div4 {
+    grid-row-start: 2;
+}
+
+.div5 {
+    grid-column: span 2 / span 2;
+    grid-row-start: 2;
+}
+        
+#ocultarSaldo {
+    background-color: white;
+    border: none;
+    font-size: 20px;
+}
+
+.saldoContainer {
+    margin: 1.5rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
+.saldoContainer p {
+    margin: auto 0;
+    font-size: 25px;
+}
+
+.userInfoContainer {
+    margin: 1.5rem 0;
+    margin-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    font-size: 20px;
+}
