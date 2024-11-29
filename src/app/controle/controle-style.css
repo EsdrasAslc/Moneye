@@ -8,8 +8,8 @@
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);
     gap: 10px;
+    max-height: 2rem;
 }
-    
 
 .div2 {
     grid-column: span 2 / span 2;
@@ -55,4 +55,41 @@
     flex-direction: column;
     justify-content: left;
     font-size: 20px;
+}
+
+.box {
+    border: solid 1px black;
+    margin-left: 1.5rem;
+
+}
+
+.box ul {
+    overflow: auto;
+    max-height: 15rem;
+    list-style: none;
+    margin: 0 1rem;
+    padding: 0;
+}
+
+.criar {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    margin-left: 1rem;
+    align-items: center;
+}
+
+.criar p {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 1rem;
+    font-weight: bold;
+    font-size: large;
+}
+
+.criar button {
+    background-color: greenyellow;
+    border: 1px solid black;
+    border-radius: 100px;
+    margin-top: 0.1rem;
 }

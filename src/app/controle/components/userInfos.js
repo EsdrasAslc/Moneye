@@ -33,8 +33,8 @@ export default function UserInfo() {
 
     return (
         <main className="userInfoContainer">
-            <div>{nome || "carregando..."}</div>
-            <div>{profissao || "carregando..."}</div>
+            <div>{nome || "Carregando..."}</div>
+            <div>{profissao || ""}</div>
         </main>
     );
 }

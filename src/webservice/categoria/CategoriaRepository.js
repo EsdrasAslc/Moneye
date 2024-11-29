@@ -18,4 +18,20 @@ export default class CategoriaRepository {
     } 
   }
 
+  async catDespesa() {
+    const categoria = await prisma.$queryRaw`SELECT id_cat_desp as id, nm_cat_desp as nome FROM cat_desp ORDER BY nome;`;
+    prisma.$disconnect()
+    if (!categoria || categoria.length === 0) {
+      return {
+        success: false
+      };
+    } else {
+        return {
+            success: true,
+            categorias: categoria
+        }
+    } 
+  }
+  
+
 }

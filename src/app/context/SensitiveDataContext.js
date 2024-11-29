@@ -6,7 +6,7 @@ const SensitiveDataContext = createContext();
 
 // Cria o provedor, que irá encapsular os componentes que precisam acessar o contexto
 export function SensitiveDataProvider({ children }) {
-  const [sensitiveData, setSensitiveData] = useState(null); // estado para armazenar o dado sensível
+  const [sensitiveData, setSensitiveData] = useState(1); // estado para armazenar o dado sensível
 
   return (
     <SensitiveDataContext.Provider value={{ sensitiveData, setSensitiveData }}>

@@ -1,12 +1,13 @@
-"use client";
+'use client'
+
 import "@/app/controle/controle-style.css";
-import { useSensitiveData } from "@/app/context/SensitiveDataContext";
 import { useState, useEffect } from "react";
+import { useSaldo } from "@/app/controle/context/saldoContext";
 
 export default function Saldo() {
-    //   const { sensitiveData } = useSensitiveData(); // Acessa o dado sensível
+    const { atualizarSaldo } = useSaldo(); // Acessa o estado do contexto
     const sensitiveData = 1;
-    const id_user = sensitiveData
+    const id_user = sensitiveData;
     const [saldo, setSaldo] = useState("");
     const [visivel, setVisivel] = useState(true);
 
@@ -15,14 +16,13 @@ export default function Saldo() {
             const response = await fetch("http://localhost:3000/api/saldo", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ id_user })
+                body: JSON.stringify({ id_user }),
             });
-            
+
             if (response.ok) {
                 const data = await response.json();
-                // Supondo que `data` tenha a estrutura `{ saldo: <valor> }`
                 setSaldo(data.saldo);
             } else {
                 const error = await response.json();
@@ -33,15 +33,14 @@ export default function Saldo() {
         }
     }
 
-    // Use `useEffect` para buscar o saldo ao montar o componente
     useEffect(() => {
         buscarSaldo();
-    }, []);
+    }, [atualizarSaldo]); // Recarrega o saldo sempre que atualizarSaldo mudar
 
     return (
         <main>
             <div className="saldoContainer">
-                <p>Saldo: {visivel ? (saldo || "carregando...") : "******"}</p>
+                <p>Saldo: R$ {visivel ? (saldo || "Carregando...") : "******"}</p>
                 <button id="ocultarSaldo" onClick={() => setVisivel(!visivel)}>
                     {visivel ? "🐵" : "🙈"}
                 </button>
