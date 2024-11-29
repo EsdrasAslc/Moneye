@@ -4,8 +4,7 @@ import { useSensitiveData } from "@/app/context/SensitiveDataContext";
 import { useState, useEffect } from "react";
 
 export default function UserInfo() {
-    //   const { sensitiveData } = useSensitiveData(); // Acessa o dado sensível
-    const sensitiveData = 1;
+    const { sensitiveData } = useSensitiveData(); // Acessa o dado sensível
     const [nome, setNome] = useState("");
     const [profissao, setProfissao] = useState('');
 

@@ -2,11 +2,12 @@
 
 import "@/app/controle/controle-style.css";
 import { useState, useEffect } from "react";
+import { useSensitiveData } from "@/app/context/SensitiveDataContext";
 import { useSaldo } from "@/app/controle/context/saldoContext";
 
 export default function Saldo() {
+    const { sensitiveData } = useSensitiveData(); // Acessa o dado sensível
     const { atualizarSaldo } = useSaldo(); // Acessa o estado do contexto
-    const sensitiveData = 1;
     const id_user = sensitiveData;
     const [saldo, setSaldo] = useState("");
     const [visivel, setVisivel] = useState(true);
