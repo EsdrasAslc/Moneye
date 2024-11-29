@@ -65,4 +65,50 @@ export default class DespesaRepository {
             await prisma.$disconnect();
         }
     }
+
+    async buscaChart(id_user) {
+        try {
+            const chart = await prisma.$queryRaw`
+                SELECT 
+                    c.nm_cat_desp AS nome_categoria,
+                    COUNT(r.id_despesa) AS quantidade_despesa,
+                    SUM(r.valor_despesa) AS valor_total
+                FROM 
+                    cat_desp c
+                INNER JOIN 
+                    despesa r
+                ON 
+                    c.id_cat_desp = r.id_cat_desp
+                WHERE 
+                    r.id_user = ${id_user}
+                GROUP BY 
+                    c.nm_cat_desp
+                ORDER BY 
+                    quantidade_despesa DESC;`;
+
+            if (!chart || chart.length === 0) {
+                console.log("Nenhum chart encontrado para o usuário:", id_user);
+                return {
+                    success: true,
+                };
+            }
+
+            const chartConverted = chart.map((row) => ({
+                nome_categoria: row.nome_categoria,
+                quantidade_despesa: Number(row.quantidade_despesa),
+                valor_total: row.valor_total.toString(),
+            }));
+
+            return {
+                success: true,
+                response: chartConverted,
+            };
+        } catch (error) {
+            console.error("Erro ao buscar chart:", error.message, error.stack);
+            return {
+                success: false,
+                error: error.message,
+            };
+        }
+    }
 }

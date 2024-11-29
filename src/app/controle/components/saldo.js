@@ -13,7 +13,7 @@ export default function Saldo() {
 
     async function buscarSaldo() {
         try {
-            const response = await fetch("http://localhost:3000/api/saldo", {
+            const response = await fetch("http://localhost:3000/api/saldo/busca", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
